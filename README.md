@@ -2,6 +2,9 @@
 Repository for paper ''TSAGen: Synthetic Time Series Generation for KPI Anomaly Detection''
 
 This repository will be maintained for a long time.
+
+TSAGen is undergoing a refactor and some features are currently unavailable. We are sorry for this inconvenience.
+
 Fell free to submit a issue or contact us if you encounter any issue when using TSAGen.
 
 # Installation
