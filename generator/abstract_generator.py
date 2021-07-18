@@ -40,7 +40,7 @@ class AbstractSeasonGenerator():
         self.cycle_list = []
         self.label_list = []
 
-        self.cycle_num = cycle_num
+        self.cycle_num = int(cycle_num)
         self.amplitude = amplitude
         self.cycle_len = cycle_len
         self.drift_a = drift_a

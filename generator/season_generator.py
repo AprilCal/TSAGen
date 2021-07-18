@@ -41,3 +41,22 @@ class example_season_generator(AbstractSeasonGenerator):
             anomaly_cycle = amplitude*self.cycle_generator.gen(forking_depth, int(length_d*self.cycle_len))
             self.cycle_list[pos] = anomaly_cycle
             self.label_list[pos] = np.ones(len(anomaly_cycle),dtype=np.int)
+
+
+class SeasonGeneratorFactory():
+
+    def __init__(self,cycle_num,amplitude,cycle_len,drift_a=0,drift_f=0,forking_depth=0):
+        self.cycle_num = cycle_num
+        self.amplitude = amplitude
+        self.cycle_len = cycle_len
+        self.drift_a = drift_a
+        self.drift_f = drift_f
+        self.forking_depth = forking_depth
+        
+    def get_generator(self,anomaly_type=None):
+        if anomaly_type is None:
+            return AbstractSeasonGenerator(self.cycle_num,self.amplitude,self.cycle_len,self.drift_a,self.drift_f,self.forking_depth)
+        elif anomaly_type == 'deformation':
+            return SeasonGeneratorWithShapeDeformation(self.cycle_num,self.amplitude,self.cycle_len,self.drift_a,self.drift_f,self.forking_depth)
+        elif anomaly_type == 'vanish':
+            return SeasonGeneratorWithCycleVanish(self.cycle_num,self.amplitude,self.cycle_len,self.drift_a,self.drift_f,self.forking_depth)

@@ -1,7 +1,7 @@
 #!python3.6
 
 # Created by Chengyu on 2021/3/8.
-# examples.
+# Generating data for correlation analysis.
 
 import numpy as np
 import Assembler as assem

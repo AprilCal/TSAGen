@@ -1,0 +1,41 @@
+# Output path
+OUT_PATH: './test_path'
+# Total number of time series.
+TOTAL_NUM: 100
+
+# A list of 3 elements (e.g., [a, b, c], a is start value, b is end value, c is step length)
+# means generatring this variable in variable-control manner.
+# Only one controlled variable is allowed in a configuration file, and meanwhile, 
+# other variables must be precise values (not meta feature).
+
+# A list of 5 elements (e.g., [a, b, c, d, e], i.e., [min, lower_quartile, mid, upper_quartile, max])
+# means meta feature. There can be multiple meta features in a configuration file.
+
+# We give some examples below.
+
+# Use meta features.
+FEATURES:
+#TREND:
+  theta1: [4,5,6,7,8] # level
+  theta2: [0.1,0.2,0.3,0.4,0.5] # trend slope
+
+#SEASON:
+  theta3: [2,4,5,6,10]  # amplitude
+  theta4: 1000 # cycle length, i.e., 1/frequency.
+  theta5: 10 # num_of_cycle
+  d: 10 # recursion depth
+  d_hat: 8 # forking depth
+  k1: 0.2
+  k2: 0.2
+
+#NOISE:
+  theta6: 0 # mean
+  theta7: [0.01,0.02,0.05,0.08,0.1] # std
+  theta8: 0.3 # skew
+  theta9: 0.4 # kurt
+
+#ANOMALY:
+  type: spike # spike/deformation/vanish/typeI/typeII
+  severity: 10
+
+

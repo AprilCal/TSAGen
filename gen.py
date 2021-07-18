@@ -6,7 +6,6 @@
 import numpy as np
 import Assembler as assem
 import generator.trend_generator as tg
-import matplotlib.pyplot as plt
 import generator.noise_generator as ng
 import generator.season_generator as sg
 import matplotlib.pyplot as plt
