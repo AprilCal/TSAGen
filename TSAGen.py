@@ -52,7 +52,7 @@ def gen_m(config):
     k1_list = gen_theta(features['k1'],num)
     k2_list = gen_theta(features['k2'],num)
     for i in range(0,num):
-        noise_generator = ng.Pearson()
+        noise_generator = ng.NoiseGeneratorFactory().get_generator(None)
         trend_generator = tg.TrendGenerator()
         sg.SeasonGeneratorFactory(theta5_list[i],10,200,drift_a=0,drift_f=0,forking_depth=7).get_generator('vanish')
 

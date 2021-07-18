@@ -76,3 +76,14 @@ class PearsonWithChangePoints(Pearson):
             a_segment = np.random.normal(self.mu, self.sigma*10, a_len)
             self.noise[position:position+a_len] = a_segment
             self.label[position:position+a_len] = np.ones(len(a_segment),dtype=np.int)
+
+class NoiseGeneratorFactory():
+
+    def __init__(self):
+        pass
+
+    def get_generator(self,anomaly_type=None):
+        if anomaly_type is None:
+            return Pearson()
+        elif anomaly_type == 'change_points':
+            return PearsonWithChangePoints()
