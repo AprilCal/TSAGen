@@ -1,7 +1,7 @@
 # Output path
 OUT_PATH: './test_path'
 # Total number of time series.
-TOTAL_NUM: 100
+TOTAL_NUM: 5
 
 # A list of 3 elements (e.g., [a, b, c], a is start value, b is end value, c is step length)
 # means generatring this variable in variable-control manner.
@@ -17,7 +17,7 @@ TOTAL_NUM: 100
 FEATURES:
 #TREND:
   theta1: [4,5,6,7,8] # level
-  theta2: [0.1,0.2,0.3,0.4,0.5] # trend slope
+  theta2: 0.01 # trend slope
 
 #SEASON:
   theta3: [2,4,5,6,10]  # amplitude
@@ -30,11 +30,11 @@ FEATURES:
 
 #NOISE:
   theta6: 0 # mean
-  theta7: [0.01,0.02,0.05,0.08,0.1] # std
-  theta8: 0.3 # skew
-  theta9: 0.4 # kurt
+  theta7: [0.1,0.2,0.3,0.4,1] # std
+  theta8: 0 # skew
+  theta9: 3 # kurt
 
-#ANOMALY:
+ANOMALY:
   type: spike # spike/deformation/vanish/typeI/typeII
   severity: 10
 

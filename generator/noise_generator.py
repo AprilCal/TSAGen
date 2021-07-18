@@ -60,6 +60,7 @@ class Pearson:
                                     matlab.double([kurt]),
                                     matlab.double([1]),
                                     matlab.double([size]))[0]
+                                    
         self.label = np.zeros(size, dtype=np.int)
         self._inject()
         return (np.array(self.noise), np.array(self.label))

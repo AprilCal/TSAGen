@@ -8,6 +8,7 @@ from numpy.lib.function_base import iterable
 import yaml
 import os
 import numpy as np
+import Assembler as assem
 import generator.trend_generator as tg
 import generator.noise_generator as ng
 import generator.season_generator as sg
@@ -51,13 +52,30 @@ def gen_m(config):
     theta9_list = gen_theta(features['theta9'],num)
     k1_list = gen_theta(features['k1'],num)
     k2_list = gen_theta(features['k2'],num)
+    season_list = []
+    noise_list = []
+    trend_list = []
     for i in range(0,num):
         noise_generator = ng.NoiseGeneratorFactory().get_generator(None)
         trend_generator = tg.TrendGenerator()
-        sg.SeasonGeneratorFactory(theta5_list[i],10,200,drift_a=0,drift_f=0,forking_depth=7).get_generator('vanish')
+        season_generator = sg.SeasonGeneratorFactory(theta5_list[i],theta3_list[i],theta4_list[i],k1_list[i],k2_list[i],forking_depth=7).get_generator(None)
 
-        noise = noise_generator.gen(theta6_list[i],theta7_list[i],theta8_list[i],theta9_list[i],num)
-        trend = trend_generator.gen(theta1_list[i],theta2_list[i],num)
+        season = season_generator.gen_season()
+        noise = noise_generator.gen(theta6_list[i],theta7_list[i],theta8_list[i],theta9_list[i],len(season[0]))
+        trend = trend_generator.gen(theta1_list[i],theta2_list[i],len(season[0]))
+        season_list.append(season)
+        noise_list.append(noise)
+        trend_list.append(trend)
+        
+
+        # print(noise[1].shape,trend[1].shape,season[1].shape)
+        # print(noise[0].shape,trend[0].shape,season[0].shape)
+        print(noise)
+        print(trend)
+        print(season)
+    assembler = assem.AbstractAssembler(season_list,noise_list,trend_list)
+    assembler.assemble()
+    assembler.save(path=out_path)
 
 def gen_v(config):
     config
@@ -76,7 +94,6 @@ if __name__ == "__main__":
     
     with open(meta_path) as f:
         config = yaml.load(f,Loader=yaml.FullLoader)
-        # print(config)
         out_path = config['OUT_PATH']
         if not os.path.exists(out_path):
             os.mkdir(out_path)

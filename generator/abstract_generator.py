@@ -42,7 +42,7 @@ class AbstractSeasonGenerator():
 
         self.cycle_num = int(cycle_num)
         self.amplitude = amplitude
-        self.cycle_len = cycle_len
+        self.cycle_len = int(cycle_len)
         self.drift_a = drift_a
         self.drift_f = drift_f
         self.forking_depth = forking_depth
@@ -57,8 +57,10 @@ class AbstractSeasonGenerator():
         amplitude = self.amplitude
         for drift_amp, length_d in zip(self.drift_a_for_every_cycle, self.drift_f_for_every_cycle):
             # apply drift
-            self.cycle_list.append(amplitude*drift_amp*self.cycle_generator.gen(self.forking_depth, int(length_d*self.cycle_len)))
-            self.label_list.append(np.zeros(int(length_d*self.cycle_len),dtype=np.int))
+            length = int(length_d*self.cycle_len)
+            season = amplitude*drift_amp*self.cycle_generator.gen(self.forking_depth, length)
+            self.cycle_list.append(season)
+            self.label_list.append(np.zeros(len(season),dtype=np.int))
 
     # hook
     def _inject(self):

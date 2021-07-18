@@ -49,9 +49,10 @@ class AbstractAssembler():
         elif self.control == 'drift_f':
             pass
         else:
-            label = np.bitwise_or(self.noise[1],self.season[1])
-            label = np.bitwise_or(label,self.trend[1])
-            self.results.append((self.noise[0]+self.season[0]+self.trend[0],label))
+            for i in range(0,len(self.season)):
+                label = np.bitwise_or(self.noise[i][1],self.season[i][1])
+                label = np.bitwise_or(label,self.trend[i][1])
+                self.results.append((self.noise[i][0]+self.season[i][0]+self.trend[i][0],label))
         self._post_inject()
 
     # hook.
