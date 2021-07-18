@@ -13,8 +13,13 @@ pip install requirements.txt
 python setup.py install
 ```
 
-# Usage
-## API usage
+## Command Usage
+You can use TSAGen in command line.
+```bash
+python TSAGen.py -h
+python TSAGen.py --mode=m --meta='./meta_features.yaml'
+```
+## API Usage
 You can directly use the API provided by TSAGen. The source file ''gen.py'' contains many examples for the API usage.
 For example:
 ```python
@@ -38,6 +43,7 @@ Coming soon...
 
 # Notes
 Note that, to enable the pearson distribution, the installation of MATLAB and other configurations are required.
+Please install Matlab and run the following commands.
 ```bash
 cd matlabroot/extern/engines/python
 python setup.py install
