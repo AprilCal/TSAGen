@@ -38,4 +38,8 @@ Coming soon...
 
 # Notes
 Note that, to enable the pearson distribution, the installation of MATLAB and other configurations are required.
+```bash
+cd "matlabroot/extern/engines/python"
+python setup.py install
+```
 
