@@ -7,7 +7,7 @@ This repository will be maintained for a long time. Fell free to submit a issue 
 
 # Installation
 ```bash
-git clone https://AprilCal/TSAGen.git
+git clone https://github.com/AprilCal/TSAGen.git
 cd ./TSAGen
 pip install requirements.txt
 python setup.py install
